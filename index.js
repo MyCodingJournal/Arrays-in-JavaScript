@@ -131,3 +131,7 @@ board[2][2];
 // => "O"
 
 //Effectively, we're using X and Y coordinates to refer to data within a two- dimensional structure.
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Mutability
+//Some methods update or mutate the object they are called on; these methods are referred to as destructive. 
+//Other methods, known as nondestructive methods, leave the object intact.
