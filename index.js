@@ -135,3 +135,93 @@ board[2][2];
 //Mutability
 //Some methods update or mutate the object they are called on; these methods are referred to as destructive. 
 //Other methods, known as nondestructive methods, leave the object intact.
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//Array Methods
+
+// Add Elements to an Array .push() and .unshift() & Spread Operator '...'
+
+//.push() and .unshift() These two methods work in the same way:
+//they take one or more arguments (the element or elements you want to add)
+//they return the length of the modified array
+//they are 'destructive methods'
+
+//The difference is that the .push() method adds elements to the end of an Array and unshift() adds them to the beginning of the array:
+
+//.push() method adds elements to the end of an Array
+const superheroes = ['Catwoman', 'She-Hulk', 'Jessica Jones'];
+
+superheroes.push('King Kong', 'Batman');
+// => 5 return the length of the modified array
+
+superheroes;
+// => [ 'Catwoman', 'She-Hulk', 'Jessica Jones', 'King Kong', 'Batman' ]
+
+//unshift() adds them to the beginning of the array
+const cities = ['New York', 'San Francisco'];
+
+cities.unshift('Las Vegas', 'Boston', 'Chicago');
+// => 5 return the length of the modified array
+
+cities;
+// => [ 'Las Vegas', 'Boston', 'Chicago', 'New York', 'San Francisco' ]
+
+//-----------------------------------------------------------------
+
+//Spread Operator '...' (nondesructive)
+//The spread operator, which looks like an ellipsis: ..., allows us to "spread out" the elements of an existing Array into a new Array, creating a copy:
+
+//const coolCities = ['New York', 'San Francisco'];
+
+//const copyOfCoolCities = [...coolCities];//creating a copy of coolCities
+
+//copyOfCoolCities;
+//=> ["New York", "San Francisco"]
+
+//spread operator comes in especially handy is when we want to add one or more new elements either before or after the elements in the original array (or both) without mutating the original array. To add an element to the front of the new array, we simply type in the new element before spreading the elements in the original array:
+
+const coolCities = ['New York', 'San Francisco'];
+
+const allCities = ['Los Angeles', 'Las Vegas', ...coolCities];
+
+coolCities;
+// => ["New York", "San Francisco"]
+
+allCities;//copied with edit
+// => ["Los Angeles", "Las Vegas", "New York", "San Francisco"]
+
+//-----------------------------------------------------------------
+
+//Remove Elements from an Array .pop() and .shift()
+
+//As with .push() and .unshift(), these two methods work in the same way:
+//they don't take any arguments
+//they remove a single element
+//they return the element that is removed
+//they are destructive methods
+
+//The .pop() method removes the last element in an Array:
+
+const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+days.pop();
+// => "Sun"
+
+days;
+// => ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+
+//The .shift() method removes the first element in an Array:
+
+const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+days.shift();
+// => "Mon"
+
+days;
+// => [Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+
+//-----------------------------------------------------------------
+
+//.slice() method: To remove elements from an Array nondestructively (without mutating the original Array)
+
