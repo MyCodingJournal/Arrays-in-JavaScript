@@ -1,3 +1,4 @@
+/////Arrays/////
 //Define Array
 const theBeatles = [ "John Lennon", "Paul McCartney", "Ringo Starr", "George Harrison"]
 
@@ -138,7 +139,7 @@ board[2][2];
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//Array Methods
+/////Array Methods/////
 
 // Add Elements to an Array .push() and .unshift() & Spread Operator '...'
 
@@ -224,4 +225,191 @@ days;
 //-----------------------------------------------------------------
 
 //.slice() method: To remove elements from an Array nondestructively (without mutating the original Array)
+
+//With No Arguments
+//If we don't provide any arguments, .slice() will return a copy of the original Array with all elements intact:
+
+const primes = [2, 3, 5, 7];
+
+const copyOfPrimes = primes.slice();
+
+primes;
+// => [2, 3, 5, 7]
+
+copyOfPrimes;
+// => [2, 3, 5, 7]
+
+//Note that creating a copy using .slice() works the same way as if you use the spread operator: they both create a shallow copy, and with both the copy points to a different object in memory than the original.
+
+const primes = [2, 3, 5, 7];
+
+const copyOfPrimesUsingSlice = primes.slice();
+
+const copyOfPrimesUsingSpreadOperator = [...primes];
+
+primes.push(11);//returns total number of elements ie.5
+// => 5
+
+primes;
+// => [2, 3, 5, 7, 11]
+
+copyOfPrimesUsingSlice;
+// => [2, 3, 5, 7]
+
+copyOfPrimesUsingSpreadOperator;
+// => [2, 3, 5, 7]
+
+//With Arguments
+//We can also provide one or two arguments to .slice(): the first is the index where the slice should 'begin' and the second is the index 'before' which it should end:
+
+const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+days.slice(1, 5);//index 1 to before 5
+// => [ 'Tue', 'Wed', 'Thu', 'Fri' ]
+
+//no second argument- runs from the index specified till the end
+
+const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+days.slice(3);// 'sliced out' first 3
+// => [ 'Thu', 'Fri', 'Sat', 'Sun' ]
+
+//return a new Array with the first 'element' removed, we call .slice(1)
+const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+days.slice(1);
+//// => ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] here (1) removes elements by length not index
+
+//return an array with the last element removed 
+days.slice(0,days.length -1);
+
+//.slice() provides an easier syntax for referencing the last element (or elements) in an Array:
+
+days.slice(-1);
+// => ["Sun"] returns the 'sliced out' element counting from back
+
+days.slice(-3);
+// => ["Fri", "Sat", "Sun"]
+
+days.slice(0, -1);
+// => ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] returns whole array except the last element. -1
+
+//note:When we provide a negative index, the JavaScript engine knows to start counting from the last element in the Array instead of the first.
+
+//-----------------------------------------------------------------
+
+//.splice() performs destructive actions. Depending on how many arguments we give it, .splice() allows us to remove elements, add elements, or replace elements (or any combination of the three).
+
+//With a Single Argument
+//.splice performs by ('elements') count not index
+//array.splice(start)
+
+const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+days.splice(2);//removes last 5 elements
+// => returns element removed["Wed", "Thu", "Fri", "Sat", "Sun"]
+
+days;
+// => ["Mon", "Tue"]
+
+//negative 'start' index with splice()
+const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+days.splice(-2);
+// => returns elements removed counting from back ["Sat", "Sun"]
+
+days;
+// => [ 'Mon', 'Tue', 'Wed', 'Thu', 'Fri' ]
+
+//With Two Arguments
+//array.splice(start, deleteCount)
+
+//two arguments to .splice(), the first is still the ('index') at which to begin splicing, and the second dictates how many elements we want to remove from the Array. For example, to remove 3 elements, starting with the element at index 2:
+
+const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+// => ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+
+days.splice(2, 3);
+//remove 3 elements, starting with the element at index 2
+// => ["Wed", "Thu", "Fri"]
+
+days;
+// => ["Mon", "Tue", "Sat", "Sun"]
+
+//Replace Elements in an Array
+
+//.splice() with 3+ arguments
+//array.splice(start, deleteCount, item1, item2, ...)
+
+const cards = ['Ace of Spades', 'Jack of Clubs', 'Nine of Clubs', 'Nine of Diamonds', 'Three of Hearts'];
+
+//After the first two, every additional argument passed to .splice() will be inserted into the Array at the position indicated by the first argument. 
+
+cards.splice(2, 1, 'Ace of Clubs');
+// => returns the elements removed ["Nine of Clubs"] and replaced by new element "Ace of Clubs".
+
+cards;
+// => ["Ace of Spades", "Jack of Clubs", "Ace of Clubs", "Nine of Diamonds", "Three of Hearts"]
+
+const menu = ['Jalapeno Poppers', 'Cheeseburger', 'Fish and Chips', 'French Fries', 'Onion Rings'];
+
+menu.splice(1, 2, 'Veggie Burger', 'House Salad', 'Teriyaki Tofu');
+// => ["Cheeseburger", "Fish and Chips"]
+
+menu;
+// => ["Jalapeno Poppers", "Veggie Burger", "House Salad", "Teriyaki Tofu", "French Fries", "Onion Rings"]
+
+//We aren't required to remove anything with .splice() — we can use it to insert any number of elements anywhere within an Array by passing 0 as the second argument. 
+
+const books = ['Bleak House', 'David Copperfield', 'Our Mutual Friend'];
+
+books.splice(2, 0, 'Great Expectations', 'Oliver Twist');
+// => []
+//returns an empty Array when we provide a second argument of 0. This makes sense because the return value is the set of elements that were removed, and we're telling it to remove 0 elements.
+books;
+// => ["Bleak House", "David Copperfield", "Great Expectations", "Oliver Twist", "Our Mutual Friend"]
+
+//Using the Computed Member Access Operator to Replace Elements []
+//easier when you only want to replace single element
+//same as .splice its a destrutive method.
+
+const cards = ['Ace of Spades', 'Jack of Clubs', 'Nine of Clubs', 'Nine of Diamonds', 'Three of Hearts'];
+
+cards[2] = 'Ace of Clubs';//insert new element at index 2
+// => "Ace of Clubs"
+
+cards;
+// => ["Ace of Spades", "Jack of Clubs", "Ace of Clubs", "Nine of Diamonds", "Three of Hearts"]
+
+//a nondestructive way to replace or add items at arbitrary points within an Array; to do it we need to combine the slice() method and the spread operator.
+
+//Slicing and Spreading
+//Combining .slice() and the spread operator allows us to replace elements nondestructively, leaving the original Array unharmed:
+
+const menu = ['Jalapeno Poppers', 'Cheeseburger', 'Fish and Chips', 'French Fries', 'Onion Rings'];
+
+const newMenu = [...menu.slice(0, 1), 'Veggie Burger', 'House Salad', 'Teriyaki Tofu', ...menu.slice(3)];
+
+menu;
+// => ["Jalapeno Poppers", "Cheeseburger", "Fish and Chips", "French Fries", "Onion Rings"]
+
+newMenu;
+// => ["Jalapeno Poppers", "Veggie Burger", "House Salad", "Teriyaki Tofu", "French Fries", "Onion Rings"]
+
+//-----------------------------------------------------------------
+//break down of newMenu- Slicing and Spreading
+const menu = ['Jalapeno Poppers', 'Cheeseburger', 'Fish and Chips', 'French Fries', 'Onion Rings'];
+
+//...menu.slice(0,1) 
+const newMenu = [...menu.slice(0,1), 'Veggie Burger', 'House Salad', 'Teriyaki Tofu']//first is the index where the slice should begin and the second is the index before which it should end, in this case is 'Jalapeno Poppers'
+
+newMenu;
+// => [ 'Jalapeno Poppers', 'Veggie Burger', 'House Salad', 'Teriyaki Tofu' ]
+
+//...menu.slice(3) spreading from index 3 onwards from original into the new array.
+const newMenu = ['Veggie Burger', 'House Salad', 'Teriyaki Tofu', ...menu.slice(3)];
+
+newMenu;
+// => 'Veggie Burger', 'House Salad', 'Teriyaki Tofu','French Fries','Onion Rings'
+
 
