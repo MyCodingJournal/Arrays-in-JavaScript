@@ -18,5 +18,9 @@ Array Methods:
     - .slice() To remove elements from an Array nondestructively (without mutating the original Array)
 - Replace elements in an Array
     - .splice()
-
+    
+Labs- Arrays-Lab.js
+    
 ![](images/javascript-array-methods.jpg)
+
+
